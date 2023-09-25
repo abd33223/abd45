@@ -20,12 +20,7 @@ st.title("Diabetes Data Visualization")
 # Description
 st.write("Diabetes is a chronic health condition characterized by elevated blood sugar levels. It can have serious health consequences if not managed properly. This interactive dashboard allows you to explore and visualize data related to diabetes, including risk factors and outcomes.")
 
-# Display files and available disk space
-uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write("Uploaded file preview:")
-    st.write(df.head())
+
 
 # Interactive Widgets
 st.sidebar.subheader("Interactive Options")
