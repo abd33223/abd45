@@ -125,13 +125,14 @@ fig_contour = px.density_contour(filtered_df, x='Age', y='Glucose', color='Outco
                                  color_discrete_map={0: 'blue', 1: 'red'})
 st.plotly_chart(fig_contour)
 
-# Gender Distribution Bar Chart
-st.subheader("Gender Distribution")
-fig_gender_distribution = px.bar(filtered_df['gender'].value_counts().reset_index(), x='index', y='gender', text='gender', title='Gender Distribution')
-fig_gender_distribution.update_traces(texttemplate='%{text}', textposition='outside')
-st.plotly_chart(fig_gender_distribution)
+# Relationships between Smoking Status and Outcome
+st.subheader("Relationship between Smoking Status and Outcome")
+smoking_outcome_count = filtered_df.groupby(['smoking_status', 'Outcome']).size().reset_index(name='count')
+fig_smoking_outcome = px.bar(smoking_outcome_count, x='smoking_status', y='count', color='Outcome', barmode='group', labels={'smoking_status': 'Smoking Status', 'count': 'Count'}, title='Smoking Status vs. Outcome')
+st.plotly_chart(fig_smoking_outcome)
 
-# Smoking Status Pie Chart
-st.subheader("Smoking Status Distribution")
-fig_smoking_status_distribution = px.pie(filtered_df['smoking_status'].value_counts().reset_index(), names='index', values='smoking_status', title='Smoking Status Distribution')
-st.plotly_chart(fig_smoking_status_distribution)
+# Relationships between Gender and Outcome
+st.subheader("Relationship between Gender and Outcome")
+gender_outcome_count = filtered_df.groupby(['gender', 'Outcome']).size().reset_index(name='count')
+fig_gender_outcome = px.bar(gender_outcome_count, x='gender', y='count', color='Outcome', barmode='group', labels={'gender': 'Gender', 'count': 'Count'}, title='Gender vs. Outcome')
+st.plotly_chart(fig_gender_outcome)
