@@ -130,19 +130,23 @@ st.subheader("Relationship between Smoking Status and Outcome")
 smoking_outcome_count = filtered_df.groupby(['smoking_status', 'Outcome']).size().reset_index(name='count')
 fig_smoking_outcome = px.bar(smoking_outcome_count, x='smoking_status', y='count', color='Outcome', barmode='group', labels={'smoking_status': 'Smoking Status', 'count': 'Count'}, title='Smoking Status vs. Outcome')
 st.plotly_chart(fig_smoking_outcome)
-
 # Relationships between Gender and Outcome (Pie Chart)
 st.subheader("Relationship between Gender and Outcome")
 gender_outcome_count = filtered_df.groupby(['gender', 'Outcome']).size().reset_index(name='count')
+
+# Define custom colors for males (blue) and females (pink)
+custom_colors = {0: 'blue', 1: 'pink'}  # 0 represents non-diabetic, 1 represents diabetic
 
 fig_gender_outcome = px.pie(
     gender_outcome_count,
     names='gender',
     values='count',
     color='Outcome',
+    color_discrete_map=custom_colors,  # Use custom colors
     labels={'gender': 'Gender', 'count': 'Count'},
     title='Gender vs. Outcome'
 )
 
 st.plotly_chart(fig_gender_outcome)
+
 
