@@ -42,7 +42,8 @@ bmi_range = st.sidebar.slider("Select BMI Range", float(df['BMI'].min()), float(
 
 # Glucose Level Range Slider
 glucose_range = st.sidebar.slider("Select Glucose Level Range", float(df['Glucose'].min()), float(df['Glucose'].max()), (float(df['Glucose'].min()), float(df['Glucose'].max())))
-
+# Number of Pregnancies Range Slider
+pregnancies_range = st.sidebar.slider("Select Number of Pregnancies", int(df['Pregnancies'].min()), int(df['Pregnancies'].max()), (int(df['Pregnancies'].min()), int(df['Pregnancies'].max())))
 # Checkbox to filter by Outcome
 filter_outcome = st.sidebar.checkbox("Filter by Outcome (Diabetic/Non-Diabetic)")
 
