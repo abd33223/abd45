@@ -131,8 +131,18 @@ smoking_outcome_count = filtered_df.groupby(['smoking_status', 'Outcome']).size(
 fig_smoking_outcome = px.bar(smoking_outcome_count, x='smoking_status', y='count', color='Outcome', barmode='group', labels={'smoking_status': 'Smoking Status', 'count': 'Count'}, title='Smoking Status vs. Outcome')
 st.plotly_chart(fig_smoking_outcome)
 
-# Relationships between Gender and Outcome
+# Relationships between Gender and Outcome (Pie Chart)
 st.subheader("Relationship between Gender and Outcome")
 gender_outcome_count = filtered_df.groupby(['gender', 'Outcome']).size().reset_index(name='count')
-fig_gender_outcome = px.bar(gender_outcome_count, x='gender', y='count', color='Outcome', barmode='group', labels={'gender': 'Gender', 'count': 'Count'}, title='Gender vs. Outcome')
+
+fig_gender_outcome = px.pie(
+    gender_outcome_count,
+    names='gender',
+    values='count',
+    color='Outcome',
+    labels={'gender': 'Gender', 'count': 'Count'},
+    title='Gender vs. Outcome'
+)
+
 st.plotly_chart(fig_gender_outcome)
+
