@@ -12,7 +12,7 @@ import pandas as pd
 import plotly.express as px
 
 # Read the modified dataset into a DataFrame
-df = pd.read_csv("diabetes(1).csv")
+df = pd.read_csv("diabetess.csv")
 
 # Page title
 st.title("Diabetes Data Visualization")
