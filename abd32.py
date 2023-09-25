@@ -141,22 +141,21 @@ gender_outcome_count = filtered_df.groupby(['gender', 'Outcome']).size().reset_i
 # Pie Chart for Gender vs. Outcome
 st.subheader(f"Pie Chart: Relationship between Gender and Outcome for {selected_gender if selected_gender != 'All' else 'All Genders'}")
 gender_outcome_count = filtered_df.groupby(['gender', 'Outcome']).size().reset_index(name='count')
-
 # Pie Chart for Distribution of Diabetes for All Genders
 st.subheader("Pie Chart: Distribution of Diabetes for All Genders")
 diabetes_count = filtered_df['Outcome'].value_counts().reset_index(name='count')
-labels = ['Non-Diabetic', 'Diabetic']
+labels = ['Diabetes', 'No Diabetes']
 
 fig_diabetes_pie = px.pie(
     diabetes_count,
-    names='index',
+    names='Outcome',
     values='count',
-    labels={'index': 'Outcome'},
     title="Distribution of Diabetes for All Genders",
-    color_discrete_sequence=['green', 'red']  # Green for non-diabetic, red for diabetic
+    color_discrete_sequence=['red', 'green']  # Red for diabetic, green for non-diabetic
 )
 
 st.plotly_chart(fig_diabetes_pie)
+
 
 
 
