@@ -19,6 +19,8 @@ st.title("Diabetes Data Visualization")
 
 # Description
 st.write("Diabetes is a chronic health condition characterized by elevated blood sugar levels. It can have serious health consequences if not managed properly. This interactive dashboard allows you to explore and visualize data related to diabetes, including risk factors and outcomes.")
+# Explanation of Outcome values
+st.write("In this dataset, the 'Outcome' column indicates whether a patient has diabetes or not. A value of 1 represents patients with diabetes, while a value of 0 represents patients without diabetes.")
 
 
 
