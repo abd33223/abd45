@@ -78,15 +78,18 @@ if show_data:
 
 # Visualizations
 st.subheader("Age Distribution by Outcome (Histogram)")
+st.write("In this graph and after using the age slider on the right of the page we can see that as the age of the patient increases he/she becomes more prone to being diabetic")
 fig_age_distribution = px.histogram(filtered_df, x='Age', color='Outcome', title='Age Distribution by Outcome')
 st.plotly_chart(fig_age_distribution)
 
 st.subheader("3D Scatter Plot showing relationship between Glucose, BMI, and Age")
+st.write("In this graph we can see that according to the 3D scatter plot as the level of glucose increases and specifically above 150 associated with an increase in BMI the patient becomes more prone to diabetes")
 fig_3d_scatter = px.scatter_3d(filtered_df, x='Glucose', y='BMI', z='Age', color='Outcome',
                                 title='3D Scatter Plot showing relationship between Glucose, BMI, and Age')
 st.plotly_chart(fig_3d_scatter)
 
 st.subheader("BMI vs. Glucose Level with Age and Pregnancies Transformations vs Outcome")
+st.write("According to this graph we can see that as the number of pregnancies increases the patient becomes more prone to being diabetic")
 fig_transformations = px.scatter(filtered_df, x='BMI', y='Glucose', color='Age', size='Pregnancies',
                  title='BMI vs. Glucose Level with Age and Pregnancies Transformations vs Outcome',
                  labels={'Glucose': 'Glucose Level', 'BMI': 'BMI'},
@@ -94,6 +97,7 @@ fig_transformations = px.scatter(filtered_df, x='BMI', y='Glucose', color='Age',
 st.plotly_chart(fig_transformations)
 
 st.subheader("Animated Scatter Plot of Glucose Level vs. Diabetes Outcome with BMI in Animation")
+st.write("Accorrding to the graph we can see that as the glucose level increase the patient becomes more prone to being diabetic")
 # Sort the DataFrame by the "BMI" column in increasing order
 df_sorted = filtered_df.sort_values(by="BMI")
 
@@ -110,6 +114,7 @@ fig_animated.update_traces(marker=dict(size=10),
 st.plotly_chart(fig_animated)
 
 st.subheader("Density Heatmap of Diabetes Pedigree Function vs. BMI (When non-Diabetic)")
+st.write("According to the Density Heatmap we can see a strong correlation between a pedigree function between 0.3 and 0.5 and BMI above 30 and being diabetic")
 fig_density_heatmap = px.density_heatmap(filtered_df[filtered_df['Outcome'] == 0], x='DiabetesPedigreeFunction', y='BMI',
                                    labels={'DiabetesPedigreeFunction': 'Diabetes Pedigree Function', 'BMI': 'BMI'},
                                    title='Density Heatmap of Diabetes Pedigree Function vs. BMI (When non-Diabetic)')
@@ -117,6 +122,7 @@ st.plotly_chart(fig_density_heatmap)
 
 # Contour Plot (Added per your request)
 st.subheader("Contour Plot of Age vs. Average Glucose Level")
+st.write("According to this contour plot we can see a strong relationship between the increase in age and being diabetic since there are alot of patients that are diabetic and are above the age of 50")
 fig_contour = px.density_contour(filtered_df, x='Age', y='Glucose', color='Outcome',
                                  title='Contour Plot of Age vs. Glucose Level',
                                  labels={'Age': 'Age', 'Glucose': 'Glucose Level'},
@@ -125,11 +131,13 @@ st.plotly_chart(fig_contour)
 
 # Relationships between Smoking Status and Outcome
 st.subheader("Relationship between Smoking Status and Outcome")
+st.write("According to the histogram we can see that people who smoke are prone to being diabetic")
 smoking_outcome_count = filtered_df.groupby(['smoking_status', 'Outcome']).size().reset_index(name='count')
 fig_smoking_outcome = px.bar(smoking_outcome_count, x='smoking_status', y='count', color='Outcome', barmode='group', labels={'smoking_status': 'Smoking Status', 'count': 'Count'}, title='Smoking Status vs. Outcome')
 st.plotly_chart(fig_smoking_outcome)
 # Pie Chart for Distribution of Diabetes for All Genders
 st.subheader("Pie Chart: Distribution of Diabetes for All Genders")
+st.write("According to the pie chart and after using the filter on the right that allows to change gender to male or female we can see that there is no relationship between gender and being diabetic")
 diabetes_count = filtered_df['Outcome'].value_counts().reset_index(name='count')
 labels = ['Diabetes', 'No Diabetes']
 
